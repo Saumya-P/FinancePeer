@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Sample test page</title>
+	<style>
+    
+		.t,.uI,td,.h,.E {
+			padding: 20px;
+			background-color:#a4dbbf;; 
+		}
+    .table
+    {
+     margin: 40px;
+    }
+	</style>
+</head>
+<body>
+<center><h1>DATA</h1></center>
+   <div class="contain">
+   	  <table class="table table-stripped">
+   	  	<thead>
+   	  		<tr>
+            <th class="uI">User ID</th>
+   	  			<th class="t">ID</th>
+   	  			<th class="h">Title</th>
+   	  			<th class="E">Body</th>
+
+   	  		</tr>
+   	  	</thead>
+		<tbody id="data">
+			
+		</tbody>
+	</table>
+
+   </div>
+
+   
+   <script>
+   	fetch("sample.json").then(
+         res=>{
+         	res.json().then(
+                 data=>{
+                 	console.log(data);
+                  
+                 	if(data.length>0){
+                 		var temp="";
+                 		//--start for loop-
+
+                 		data.forEach((u)=>{
+                          temp+="<tr>";
+                          temp+="<td>"+u.userId+" "+"</td>";
+                          temp+="<td>"+u.id+" "+"</td>";
+                       //   temp+="<td>"+u.uerid+"</td>";
+                          temp+="<td>"+u.title+"</td>";
+                          temp+="<td>"+u.body+"</td></tr>";
+
+                          //-->close for loop
+
+                          document.getElementById("data").innerHTML = temp;
+
+                 		})
+                 	}
+                 }
+         		
+         	)
+         }
+
+   	);
+   </script>
+</body>
+</html>
